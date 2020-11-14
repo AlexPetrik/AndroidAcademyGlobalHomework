@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Домашняя работа Андроид Академии "</string>
+    <string name="android_academy_homework">"Домашняя работа Андроид Академии "</string>
+    <string name="movie_details">Подробно о фильме</string>
+    <string name="avengers_end_game">Мстители:\nФинал</string>
+    <string name="_13plus">13+</string>
+    <string name="action_adventure_fantasy">Боевик, Приключения, Фэнтези</string>
+    <string name="_125_reviews">125 просмотров</string>
+</resources>
