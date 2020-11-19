@@ -156,6 +156,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/robert_downey_jr"
             android:visibility="visible"
+            android:background="@drawable/image_shape"
             app:layout_constraintEnd_toStartOf="@+id/chris_evans_image"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
