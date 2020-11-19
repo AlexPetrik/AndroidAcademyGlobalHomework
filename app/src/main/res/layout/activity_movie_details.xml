@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/mask"
-            android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:layout_width="match_parent"
+            android:layout_height="298dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/avengers_end_game"
             android:contentDescription="@string/avengers_end_game"
