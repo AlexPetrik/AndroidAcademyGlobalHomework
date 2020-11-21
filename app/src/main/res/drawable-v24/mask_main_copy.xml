@@ -1,40 +1,38 @@
 <vector
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="166dp"
-    android:height="248dp"
-    android:viewportWidth="166"
-    android:viewportHeight="248"
+    android:width="375dp"
+    android:height="298dp"
+    android:viewportWidth="375"
+    android:viewportHeight="298"
     >
-
     <group>
 
         <clip-path
-            android:pathData="M0 0H166V248H0V0Z"
+            android:pathData="M0 0H375V298H0V0Z"
             />
 
         <group
             android:translateX="0.5"
-            android:translateY="0.423"
-            android:pivotX="83"
-            android:pivotY="124"
-            android:scaleX="0.904"
-            android:scaleY="0.904"
+            android:translateY="0.5"
+            android:pivotX="187.5"
+            android:pivotY="149"
+            android:scaleX="0.843"
+            android:scaleY="0.843"
             android:rotation="90"
             >
 
             <path
-                android:pathData="M0 0V248H166V0"
-                >
+                android:pathData="M0 0V298H375V0">
 
                 <aapt:attr name="android:fillColor">
 
                     <gradient
                         android:type="linear"
-                        android:startX="41.5"
-                        android:startY="124"
-                        android:endX="124.5"
-                        android:endY="124"
+                        android:startX="93.75"
+                        android:startY="149"
+                        android:endX="281.25"
+                        android:endY="149"
                         >
 
                         <item

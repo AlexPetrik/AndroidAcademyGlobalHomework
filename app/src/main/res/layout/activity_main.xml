@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/bg"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -46,9 +46,46 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/movie"
+        android:background="@drawable/bg_unit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/location">
+
+        <RelativeLayout
+            android:id="@+id/mask_movie"
+            android:layout_width="166dp"
+            android:layout_height="248dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="2dp"
+            android:background="#00000000">
+
+            <ImageView
+                android:id="@+id/movie_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/mask_main"
+                android:contentDescription="@string/avengers_end_game"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/avengers_end_game_title" />
+
+            <View
+                android:id="@+id/mask"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/mask_main" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/pg"
@@ -58,12 +95,12 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="false"
             android:layout_alignParentBottom="false"
-            android:background="@drawable/pg"
-            >
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp">
 
             <TextView
                 android:id="@+id/some_id"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="16dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
@@ -100,9 +137,9 @@
             android:id="@+id/tag"
             android:layout_width="146dp"
             android:layout_height="12dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="214dp"
+            android:layout_marginEnd="14dp"
             android:lineSpacingExtra="3sp"
             android:text="@string/action_adventure_fantasy"
             android:textAppearance="@style/tag" />
@@ -110,10 +147,9 @@
         <RelativeLayout
             android:id="@+id/reviews"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="17dp"
             android:layout_below="@+id/tag"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/reviews">
+            android:layout_marginTop="4dp">
 
             <RatingBar
                 android:id="@+id/ratingBar_main"
@@ -124,7 +160,6 @@
                 android:layout_alignParentBottom="false"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="116dp"
-                android:background="@drawable/reviews"
                 android:numStars="5"
                 android:theme="@style/ratingBar" />
 
@@ -144,28 +179,21 @@
 
         <RelativeLayout
             android:id="@+id/name_min"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="154dp"
+            android:layout_height="32dp"
             android:layout_below="@id/reviews"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="false"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/name_min"
-            android:paddingTop="16dp">
+            android:paddingTop="8dp">
 
             <TextView
                 android:id="@+id/avengers_end_game_main"
                 style="avengers_end_game_main"
-                android:layout_width="154dp"
-                android:layout_height="20dp"
-                android:layout_above="@id/min"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
-                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:lineSpacingExtra="4sp"
                 android:text="@string/avengers_end_game"
                 android:textAppearance="@style/avengers_end_game_main"
@@ -175,45 +203,17 @@
                 android:id="@+id/min"
                 android:layout_width="154dp"
                 android:layout_height="12dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
                 android:gravity="center_vertical"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/min"
                 android:textAppearance="@style/min" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/mask_movie"
-            android:layout_width="166dp"
-            android:layout_height="248dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="2dp"
-            android:layout_centerHorizontal="true"
-            android:background="#00000000">
-
-<!--            <View-->
-<!--                android:id="@+id/mask"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:layout_alignParentStart="true"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_alignParentTop="true"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                android:background="@drawable/mask_main"-->
-<!--                />-->
-
-<!--            <View-->
-<!--                android:id="@+id/movie_img"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:layout_alignParentStart="true"-->
-<!--                android:layout_alignParentTop="true"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                android:background="@drawable/movie" />-->
-
-        </RelativeLayout>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
