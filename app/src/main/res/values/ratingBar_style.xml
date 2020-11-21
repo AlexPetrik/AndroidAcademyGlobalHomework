@@ -2,6 +2,6 @@
 <resources>
     <style name="ratingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">@color/tag_name</item>
-<!--        <item name="colorControlActivated">@color/white</item>-->
+        <item name="colorControlActivated">@color/white</item>
     </style>
 </resources>
