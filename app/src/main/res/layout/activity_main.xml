@@ -57,7 +57,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="2dp"
+            android:layout_margin="4dp"
+            android:layout_marginTop="4dp"
             android:background="#00000000">
 
             <ImageView
@@ -83,6 +84,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
+                android:layout_marginTop="2dp"
                 android:background="@drawable/mask_main" />
 
         </RelativeLayout>
