@@ -7,11 +7,39 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+    <RelativeLayout
+        android:id="@+id/location"
+        android:layout_width="224dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="31dp"
+        android:clipToOutline="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/combined_shape"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/combined_shape"
+            app:srcCompat="@drawable/ic_combined_shape" />
+
+        <TextView
+            android:id="@+id/movies_list_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8"
+            android:layout_toEndOf="@id/combined_shape"
+            android:text="@string/movies_list"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
