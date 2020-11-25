@@ -70,6 +70,7 @@
             12
         </item>
     </style>
+
     <style name="activity_main_ratio">
 
         <item name="android:textSize">
@@ -81,6 +82,7 @@
         </item>
 
     </style>
+
     <style name="activity_main_tag">
 
         <item name="android:textSize">
@@ -92,6 +94,7 @@
         </item>
 
     </style>
+
     <style name="activity_main_review">
 
         <item name="android:textSize">
@@ -103,6 +106,7 @@
         </item>
 
     </style>
+
     <style name="activity_main_movie_name">
 
         <item name="android:textSize">
@@ -110,6 +114,7 @@
         </item>
 
     </style>
+
     <style name="activity_main_duration">
 
         <item name="android:textSize">
