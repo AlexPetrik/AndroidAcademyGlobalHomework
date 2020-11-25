@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="avengers_end_game">
+    <style name="movie_details_movie_name">
         <item name="android:textSize">
             40sp
         </item>
@@ -23,7 +23,7 @@
         </item>
     </style>
 
-    <style name="storyline_name">
+    <style name="storyline_title">
         <item name="android:textSize">
             14sp
         </item>
@@ -41,7 +41,7 @@
         </item>
     </style>
 
-    <style name="after_the_d">
+    <style name="movie_detail_description">
         <item name="android:textSize">
             14sp
         </item>
@@ -50,7 +50,7 @@
         </item>
     </style>
 
-    <style name="cast_name">
+    <style name="cast_title">
         <item name="android:textSize">
             14sp
         </item>
@@ -70,7 +70,7 @@
             12
         </item>
     </style>
-    <style name="some_id">
+    <style name="activity_main_ratio">
 
         <item name="android:textSize">
             12sp
@@ -81,7 +81,7 @@
         </item>
 
     </style>
-    <style name="tag">
+    <style name="activity_main_tag">
 
         <item name="android:textSize">
             8sp
@@ -92,7 +92,7 @@
         </item>
 
     </style>
-    <style name="review">
+    <style name="activity_main_review">
 
         <item name="android:textSize">
             8sp
@@ -103,14 +103,14 @@
         </item>
 
     </style>
-    <style name="avengers_end_game_main">
+    <style name="activity_main_movie_name">
 
         <item name="android:textSize">
             14sp
         </item>
 
     </style>
-    <style name="min">
+    <style name="activity_main_duration">
 
         <item name="android:textSize">
             8sp

@@ -9,7 +9,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
-        val back_btn = findViewById<Button>(R.id.back_btn)
+        val back_btn = findViewById<Button>(R.id.movie_detail_back_button)
         back_btn.setOnClickListener {
             onBackPressed()
         }

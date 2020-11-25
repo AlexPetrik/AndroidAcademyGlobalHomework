@@ -18,7 +18,7 @@
     <string name="back">Back</string>
     <string name="combined_shape" translatable="false">combined_shape</string>
     <string name="movies_list">Movies list</string>
-    <string name="some_id" translatable="false">13+</string>
+    <string name="ratio_13plus" translatable="false">13+</string>
     <string name="like" translatable="false">like</string>
     <string name="min">137 min</string>
 </resources>

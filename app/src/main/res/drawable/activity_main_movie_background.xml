@@ -10,8 +10,8 @@
 
     <group>
 
-        <clip-path
-            android:pathData="M8 0H162C166.418 0 170 3.58172 170 8V288C170 292.418 166.418 296 162 296H8C3.58172 296 0 292.418 0 288V8C0 3.58172 3.58172 0 8 0Z"
+        <clip-path android:pathData="M8 0H162C166.418 0 170 3.58172 170 8V288C170
+        292.418 166.418 296 162 296H8C3.58172 296 0 292.418 0 288V8C0 3.58172 3.58172 0 8 0Z"
             />
 
         <group
@@ -24,9 +24,7 @@
             android:rotation="44.852"
             >
 
-            <path
-                android:pathData="M0 0V296H170V0"
-                >
+            <path android:pathData="M0 0V296H170V0" >
 
                 <aapt:attr name="android:fillColor">
 
@@ -40,13 +38,11 @@
 
                         <item
                             android:color="#FD404056"
-                            android:offset="0"
-                            />
+                            android:offset="0"/>
 
                         <item
                             android:color="#222232"
-                            android:offset="1"
-                            />
+                            android:offset="1"/>
 
                     </gradient>
 
