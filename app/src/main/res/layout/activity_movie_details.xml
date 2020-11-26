@@ -12,6 +12,16 @@
         android:layout_height="wrap_content"
         android:background="@color/black">
 
+        <Button
+            android:id="@+id/movie_detail_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/material_on_background_disabled"
+            android:drawableLeft="@drawable/ic_back"
+            android:text="@string/back"
+            app:layout_constraintStart_toStartOf="@+id/movie_detail_guideline_start"
+            app:layout_constraintTop_toTopOf="@+id/movie_detail_mask" />
+
         <ImageView
             android:id="@+id/movie_detail_mask"
             android:layout_width="0dp"
@@ -245,16 +255,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/mark_ruffalo_name"
             app:layout_constraintTop_toBottomOf="@id/chris_hemsworth_image" />
-
-        <Button
-            android:id="@+id/movie_detail_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/material_on_background_disabled"
-            android:drawableLeft="@drawable/ic_back"
-            android:text="@string/back"
-            app:layout_constraintStart_toStartOf="@+id/movie_detail_guideline_start"
-            app:layout_constraintTop_toTopOf="@+id/movie_detail_mask" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
