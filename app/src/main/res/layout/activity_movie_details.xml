@@ -12,26 +12,44 @@
         android:layout_height="wrap_content"
         android:background="@color/black">
 
-        <Button
-            android:id="@+id/movie_detail_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/material_on_background_disabled"
-            android:drawableLeft="@drawable/ic_back"
-            android:text="@string/back"
-            app:layout_constraintStart_toStartOf="@+id/movie_detail_guideline_start"
-            app:layout_constraintTop_toTopOf="@+id/movie_detail_mask" />
+
+        <!--        <Button-->
+        <!--            android:id="@+id/movie_detail_back_button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:background="@color/material_on_background_disabled"-->
+        <!--            android:drawableLeft="@drawable/ic_back"-->
+        <!--            android:text="@string/back"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/movie_detail_guideline_start"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/movie_detail_mask" />-->
 
         <ImageView
             android:id="@+id/movie_detail_mask"
             android:layout_width="0dp"
-            android:layout_height="298dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/avengers_end_game"
             android:scaleType="centerCrop"
             android:src="@drawable/avengers_end_game"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/movie_detail_back_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/material_on_background_disabled"
+                android:text="@string/back"
+                android:textColor="@color/grey"
+                app:drawableLeftCompat="@drawable/ic_back" />
+        </androidx.appcompat.widget.Toolbar>
 
         <TextView
             android:id="@+id/movie_detail_ratio"
@@ -194,7 +212,7 @@
             android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/chris_hemsworth_image"
             app:layout_constraintStart_toEndOf="@+id/chris_evans_image"
-            app:layout_constraintTop_toBottomOf="@+id/movie_detail_cast_title"/>
+            app:layout_constraintTop_toBottomOf="@+id/movie_detail_cast_title" />
 
         <ImageView
             android:id="@+id/chris_hemsworth_image"
