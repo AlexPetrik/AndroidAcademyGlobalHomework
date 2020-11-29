@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="ratingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">@color/tag_name</item>
-<!--        <item name="colorControlActivated">@color/white</item>-->
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/tag_name</item>
     </style>
 </resources>
