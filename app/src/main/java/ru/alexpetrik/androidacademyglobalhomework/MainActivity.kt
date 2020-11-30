@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 class MainActivity : AppCompatActivity(), ClickListener {
 
     private val movieListFragment = FragmentMovieList.newInstance()
-
     private val movieDetailFragment = FragmentMovieDetails.newInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,19 +19,22 @@ class MainActivity : AppCompatActivity(), ClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction()
-            .apply {
-                add(R.id.fragments_container, movieListFragment)
-                commit()
-            }
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .apply {
+                    add(R.id.fragments_container, movieListFragment)
+                    commit()
+                }
 
-        movieListFragment.setListener(this@MainActivity, movieDetailFragment)
-        movieDetailFragment.setListener(this@MainActivity, movieListFragment)
+            movieListFragment.setListener(this@MainActivity, movieDetailFragment)
+            movieDetailFragment.setListener(this@MainActivity, movieListFragment)
+        }
     }
 
     override fun changeFragment(showedFragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragments_container, showedFragment)
+            addToBackStack(null)
             commit()
         }
     }

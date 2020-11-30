@@ -29,7 +29,6 @@ class FragmentMovieList : Fragment() {
         movie = view.findViewById<View>(R.id.movie).apply {
             setOnClickListener {
                 showedFragment?.let { it -> listener?.changeFragment(it) }
-//                listener?.changeFragment(FragmentMovieDetails.newInstance())
             }
         }
     }
