@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 class FragmentMovieDetails : Fragment() {
-
     private var listener: ClickListener? = null
     private var backTextView: TextView? = null
+
+    companion object {
+        fun newInstance() = FragmentMovieDetails()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +37,5 @@ class FragmentMovieDetails : Fragment() {
         backTextView?.setOnClickListener {
             listener?.changeFragment(this)
         }
-    }
-
-    companion object {
-        fun newInstance() = FragmentMovieDetails()
     }
 }

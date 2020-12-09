@@ -11,6 +11,10 @@ class FragmentMovieList : Fragment() {
     private var listener: ClickListener? = null
     private var movie: View? = null
 
+    companion object {
+        fun newInstance() = FragmentMovieList()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -33,9 +37,5 @@ class FragmentMovieList : Fragment() {
         movie?.setOnClickListener {
             listener?.changeFragment(this)
         }
-    }
-
-    companion object {
-        fun newInstance() = FragmentMovieList()
     }
 }
