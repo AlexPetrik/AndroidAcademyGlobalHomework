@@ -10,8 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/movie_detail_mask"
@@ -179,7 +178,6 @@
             android:contentDescription="@string/chris_evans"
             android:scaleType="centerCrop"
             android:src="@drawable/chris_evans"
-
             android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/mark_ruffalo_image"
             app:layout_constraintStart_toEndOf="@+id/robert_down_image"
@@ -193,7 +191,6 @@
             android:contentDescription="@string/mark_ruffalo"
             android:scaleType="centerCrop"
             android:src="@drawable/mark_ruffalo"
-
             android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/chris_hemsworth_image"
             app:layout_constraintStart_toEndOf="@+id/chris_evans_image"
@@ -218,7 +215,6 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-
             android:text="@string/r_downey_jr"
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/chris_evans_name"
@@ -231,7 +227,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/chris_evans"
-
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/mark_ruffalo_name"
             app:layout_constraintStart_toEndOf="@+id/r_downey_jr_name"
@@ -242,7 +237,6 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-
             android:text="@string/mark_ruffalo"
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/chris_hemsworth_name"

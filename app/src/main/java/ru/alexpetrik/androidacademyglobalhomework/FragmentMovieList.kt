@@ -10,7 +10,6 @@ class FragmentMovieList : Fragment() {
 
     private var listener: ClickListener? = null
     private var movie: View? = null
-    private var showedFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,21 +24,18 @@ class FragmentMovieList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        movie = view.findViewById(R.id.movie)
+    }
 
-        movie = view.findViewById<View>(R.id.movie).apply {
-            setOnClickListener {
-                showedFragment?.let { it -> listener?.changeFragment(it) }
-            }
+    override fun onStart() {
+        super.onStart()
+        listener = activity as ClickListener
+        movie?.setOnClickListener {
+            listener?.changeFragment(this)
         }
     }
 
     companion object {
         fun newInstance() = FragmentMovieList()
     }
-
-    fun setListener(l: ClickListener, showedFragment: Fragment) {
-        listener = l
-        this.showedFragment = showedFragment
-    }
-
 }

@@ -11,7 +11,6 @@ class FragmentMovieDetails : Fragment() {
 
     private var listener: ClickListener? = null
     private var backTextView: TextView? = null
-    private var showedFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,21 +25,18 @@ class FragmentMovieDetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backTextView = view.findViewById<TextView>(R.id.movie_detail_back_tv)
+    }
 
-        backTextView = view.findViewById<TextView>(R.id.movie_detail_back_tv).apply {
-            setOnClickListener {
-                showedFragment?.let { it -> listener?.changeFragment(it) }
-            }
+    override fun onStart() {
+        super.onStart()
+        listener = activity as ClickListener
+        backTextView?.setOnClickListener {
+            listener?.changeFragment(this)
         }
     }
 
     companion object {
         fun newInstance() = FragmentMovieDetails()
     }
-
-    fun setListener(l: ClickListener, showedFragment: Fragment) {
-        listener = l
-        this.showedFragment = showedFragment
-    }
-
 }
