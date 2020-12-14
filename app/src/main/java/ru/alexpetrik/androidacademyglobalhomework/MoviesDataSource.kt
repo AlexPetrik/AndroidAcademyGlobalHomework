@@ -9,7 +9,24 @@ class MoviesDataSource {
             13,
             4,
             125,
-            R.string.after_the_dev
+            R.string.after_the_dev,
+            listOf(Actor(
+                "Robert Downey Jr.",
+                R.drawable.robert_downey_jr
+                ),
+                Actor(
+                    "Chris Evans",
+                    R.drawable.chris_evans
+                ),
+                Actor(
+                    "Mark Ruffalo",
+                    R.drawable.mark_ruffalo
+                ),
+                Actor(
+                    "Chris Hemsworth",
+                    R.drawable.chris_hemsworth
+                ),
+            )
         ),
         Movie("Tenet",
             R.drawable.tenet,
@@ -17,7 +34,20 @@ class MoviesDataSource {
             97,
             16,
             5,
-            98
+            98,
+            actors = listOf(Actor(
+                "Robert Downey Jr.",
+                R.drawable.robert_downey_jr
+                ),
+              Actor(
+                    "Mark Ruffalo",
+                    R.drawable.mark_ruffalo
+                ),
+                Actor(
+                    "Chris Hemsworth",
+                    R.drawable.chris_hemsworth
+                )
+            )
         ),
         Movie("Black Widow",
             R.drawable.black_widow,
@@ -25,7 +55,20 @@ class MoviesDataSource {
             102,
             13,
             4,
-            38
+            38,
+            actors = listOf(Actor(
+                "Robert Downey Jr.",
+                R.drawable.robert_downey_jr
+                ),
+                Actor(
+                    "Chris Evans",
+                    R.drawable.chris_evans
+                ),
+                Actor(
+                    "Mark Ruffalo",
+                    R.drawable.mark_ruffalo
+                )
+            )
         ),
         Movie("Wonder Woman 1984",
             R.drawable.wonder_woman,
@@ -33,7 +76,20 @@ class MoviesDataSource {
             120,
             13,
             3,
-            74
+            74,
+            actors = listOf(Actor(
+                "Robert Downey Jr.",
+                R.drawable.robert_downey_jr
+                ),
+                Actor(
+                    "Mark Ruffalo",
+                    R.drawable.mark_ruffalo
+                ),
+                Actor(
+                    "Chris Hemsworth",
+                    R.drawable.chris_hemsworth
+                ),
+            )
         ),
     )
 }

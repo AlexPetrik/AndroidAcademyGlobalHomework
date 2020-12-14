@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
     private var listener: ClickListener? = null
     private var backTextView: TextView? = null
+    private var recycler: RecyclerView? = null
 
     companion object {
         fun newInstance(movie: Movie?) = FragmentMovieDetails(movie)
@@ -35,8 +39,12 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
             listener?.changeFragment(this, null)
         }
 
+        recycler = view.findViewById(R.id.actor_list_rv)
+        recycler?.adapter = ActorListAdapter()
+        recycler?.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+
         fillContent(view, movie)
-    }
+   }
 
     private fun fillContent(view: View, movie: Movie?) {
         if (movie != null) {
@@ -47,6 +55,11 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
             view.findViewById<TextView>(R.id.movie_detail_reviews).text = "${movie.reviews} reviews"
             view.findViewById<TextView>(R.id.movie_detail_ratio).text = "${movie.ratio}+"
             view.findViewById<TextView>(R.id.movie_detail_storyline_description).text = getText(movie.storyLine)
+
+            (recycler?.adapter as? ActorListAdapter)?.apply {
+                bindMovies(movie.actors)
+            }
+
         }
     }
 
