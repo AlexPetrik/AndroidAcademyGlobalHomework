@@ -8,7 +8,8 @@ class MoviesDataSource {
             137,
             13,
             4,
-            125
+            125,
+            R.string.after_the_dev
         ),
         Movie("Tenet",
             R.drawable.tenet,
@@ -33,6 +34,6 @@ class MoviesDataSource {
             13,
             3,
             74
-            ),
+        ),
     )
 }

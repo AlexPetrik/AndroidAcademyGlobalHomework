@@ -7,5 +7,7 @@ data class Movie(
     val duration: Int,
     val ratio: Int,
     val rating: Int,
-    val reviews: Int
+    val reviews: Int,
+    val storyLine: Int = R.string.no_description,
+    val actors: List<Actor> = listOf()
 )

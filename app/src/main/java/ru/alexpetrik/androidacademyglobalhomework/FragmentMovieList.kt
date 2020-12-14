@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class FragmentMovieList : Fragment() {
+class FragmentMovieList() : Fragment() {
 
     private var listener: ClickListener? = null
-//    private var movie: View? = null
     private var recycler: RecyclerView? = null
 
     companion object {
@@ -33,23 +31,31 @@ class FragmentMovieList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycler = view.findViewById(R.id.rv_movies)
-        recycler?.adapter = MovieListAdapter()
+        recycler?.adapter = MovieListAdapter(movieClickListener)
         recycler?.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        listener = activity as ClickListener
     }
 
     override fun onStart() {
         super.onStart()
-
         updateData()
-//        listener = activity as ClickListener
-//        movie?.setOnClickListener {
-//            listener?.changeFragment(this)
-//        }
     }
 
     private fun updateData() {
         (recycler?.adapter as? MovieListAdapter)?.apply {
             bindMovies(MoviesDataSource().getMovies())
         }
+    }
+
+    private fun doOnClick(movie: Movie) {
+        listener?.changeFragment(this, movie)
+    }
+
+    private val movieClickListener = object : OnMovieClickListener {
+        override fun onClick(movie: Movie) {
+            doOnClick(movie)
+        }
+
     }
 }

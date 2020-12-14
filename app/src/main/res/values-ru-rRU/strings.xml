@@ -19,4 +19,5 @@
     <string name="back">Назад</string>
     <string name="movies_list">Список фильмов</string>
     <string name="min">137 мин</string>
+    <string name="no_description">Без описания</string>
 </resources>

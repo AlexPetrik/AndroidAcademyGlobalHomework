@@ -8,7 +8,9 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MovieListAdapter: RecyclerView.Adapter<MovieListViewHolder>() {
+class MovieListAdapter(
+        private val clickListener: OnMovieClickListener
+    ): RecyclerView.Adapter<MovieListViewHolder>() {
 
     private var movies: List<Movie> = listOf()
 
@@ -18,6 +20,9 @@ class MovieListAdapter: RecyclerView.Adapter<MovieListViewHolder>() {
 
     override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
         holder.onBind(movies[position])
+        holder.itemView.setOnClickListener {
+            clickListener.onClick(movies[position])
+        }
     }
 
     override fun getItemCount() = movies.size
@@ -45,7 +50,11 @@ class MovieListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         movieDurationTextView.text = "${movie.duration} min"
         movieRatioTextView.text = "${movie.ratio}+"
         movieRatingRatingBar.numStars = movie.rating
-        movieReviewTextView.text = "${movie.reviews}"
+        movieReviewTextView.text = "${movie.reviews} reviews"
     }
 
+}
+
+interface OnMovieClickListener {
+    fun onClick(movie: Movie)
 }
