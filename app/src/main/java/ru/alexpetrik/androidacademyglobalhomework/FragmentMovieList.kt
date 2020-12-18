@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class FragmentMovieList() : Fragment() {
+class FragmentMovieList : Fragment() {
 
     private var listener: ClickListener? = null
     private var recycler: RecyclerView? = null

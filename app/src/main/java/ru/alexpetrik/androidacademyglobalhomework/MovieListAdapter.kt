@@ -8,9 +8,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MovieListAdapter(
-        private val clickListener: OnMovieClickListener
-    ): RecyclerView.Adapter<MovieListViewHolder>() {
+class MovieListAdapter(private val clickListener: OnMovieClickListener): RecyclerView.Adapter<MovieListViewHolder>() {
 
     private var movies: List<Movie> = listOf()
 

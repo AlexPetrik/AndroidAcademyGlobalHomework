@@ -2,94 +2,157 @@ package ru.alexpetrik.androidacademyglobalhomework
 
 class MoviesDataSource {
     fun getMovies(): List<Movie> = listOf(
-        Movie("Avengers: End Game",
-            R.drawable.avengers_end_game_title,
-            "Action, Adventure, Drama",
-            137,
-            13,
-            4,
-            125,
+        Movie(movieName = "Avengers: End Game",
+            image = R.drawable.avengers_end_game_title,
+            tag = "Action, Adventure, Drama",
+            duration = 137,
+            ratio = 13,
+            rating = 4,
+            reviews = 125,
             R.string.after_the_dev,
             listOf(Actor(
-                "Robert Downey Jr.",
-                R.drawable.robert_downey_jr
+                    name = "Robert Downey Jr.",
+                    photo = R.drawable.robert_downey_jr
                 ),
                 Actor(
-                    "Chris Evans",
-                    R.drawable.chris_evans
+                    name = "Chris Evans",
+                    photo = R.drawable.chris_evans
                 ),
                 Actor(
-                    "Mark Ruffalo",
-                    R.drawable.mark_ruffalo
+                    name = "Mark Ruffalo",
+                    photo = R.drawable.mark_ruffalo
                 ),
                 Actor(
-                    "Chris Hemsworth",
-                    R.drawable.chris_hemsworth
+                    name = "Chris Hemsworth",
+                    photo = R.drawable.chris_hemsworth
                 ),
+                Actor(
+                    name = "Chris Evans",
+                    photo = R.drawable.chris_evans
+                ),
+                Actor(
+                    name = "Mark Ruffalo",
+                    photo = R.drawable.mark_ruffalo
+                )
             )
         ),
-        Movie("Tenet",
-            R.drawable.tenet,
-            "Action, Sci-Fi, Thriller",
-            97,
-            16,
-            5,
-            98,
+        Movie(movieName = "Tenet",
+            image = R.drawable.tenet,
+            tag = "Action, Sci-Fi, Thriller",
+            duration = 97,
+            ratio = 16,
+            rating = 5,
+            reviews = 98,
             actors = listOf(Actor(
-                "Robert Downey Jr.",
-                R.drawable.robert_downey_jr
+                    name = "Robert Downey Jr.",
+                    photo = R.drawable.robert_downey_jr
                 ),
               Actor(
-                    "Mark Ruffalo",
-                    R.drawable.mark_ruffalo
+                  name = "Mark Ruffalo",
+                  photo = R.drawable.mark_ruffalo
                 ),
                 Actor(
-                    "Chris Hemsworth",
-                    R.drawable.chris_hemsworth
+                    name = "Chris Hemsworth",
+                    photo = R.drawable.chris_hemsworth
                 )
             )
         ),
-        Movie("Black Widow",
-            R.drawable.black_widow,
-            "Action, Adventure, Sci-Fi",
-            102,
-            13,
-            4,
-            38,
+        Movie(movieName = "Black Widow",
+            image = R.drawable.black_widow,
+            tag = "Action, Adventure, Sci-Fi",
+            duration = 102,
+            ratio = 13,
+            rating = 4,
+            reviews = 38,
             actors = listOf(Actor(
-                "Robert Downey Jr.",
-                R.drawable.robert_downey_jr
+                    name = "Robert Downey Jr.",
+                    photo = R.drawable.robert_downey_jr
                 ),
                 Actor(
-                    "Chris Evans",
-                    R.drawable.chris_evans
+                    name = "Chris Evans",
+                    photo = R.drawable.chris_evans
                 ),
                 Actor(
-                    "Mark Ruffalo",
-                    R.drawable.mark_ruffalo
+                    name = "Mark Ruffalo",
+                    photo = R.drawable.mark_ruffalo
                 )
             )
         ),
-        Movie("Wonder Woman 1984",
-            R.drawable.wonder_woman,
-            "Action, Adventure, Fantasy",
-            120,
-            13,
-            3,
-            74,
+        Movie(movieName = "Wonder Woman 1984",
+            image = R.drawable.wonder_woman,
+            tag = "Action, Adventure, Fantasy",
+            duration = 120,
+            ratio = 13,
+            rating = 3,
+            reviews = 74,
             actors = listOf(Actor(
-                "Robert Downey Jr.",
-                R.drawable.robert_downey_jr
+                    name = "Robert Downey Jr.",
+                    photo = R.drawable.robert_downey_jr
                 ),
                 Actor(
-                    "Mark Ruffalo",
-                    R.drawable.mark_ruffalo
+                    name = "Mark Ruffalo",
+                    photo = R.drawable.mark_ruffalo
                 ),
                 Actor(
-                    "Chris Hemsworth",
-                    R.drawable.chris_hemsworth
+                    name = "Chris Hemsworth",
+                    photo = R.drawable.chris_hemsworth
                 ),
             )
         ),
+        Movie(movieName = "Avengers: End Game",
+            image = R.drawable.avengers_end_game_title,
+            tag = "Action, Adventure, Drama",
+            duration = 137,
+            ratio = 13,
+            rating = 4,
+            reviews = 125,
+            R.string.after_the_dev,
+            listOf(Actor(
+                name = "Robert Downey Jr.",
+                photo = R.drawable.robert_downey_jr
+            ),
+                Actor(
+                    name = "Chris Evans",
+                    photo = R.drawable.chris_evans
+                ),
+                Actor(
+                    name = "Mark Ruffalo",
+                    photo = R.drawable.mark_ruffalo
+                ),
+                Actor(
+                    name = "Chris Hemsworth",
+                    photo = R.drawable.chris_hemsworth
+                ),
+                Actor(
+                    name = "Chris Evans",
+                    photo = R.drawable.chris_evans
+                ),
+                Actor(
+                    name = "Mark Ruffalo",
+                    photo = R.drawable.mark_ruffalo
+                )
+            )
+        ),
+        Movie(movieName = "Tenet",
+            image = R.drawable.tenet,
+            tag = "Action, Sci-Fi, Thriller",
+            duration = 97,
+            ratio = 16,
+            rating = 5,
+            reviews = 98,
+            actors = listOf(Actor(
+                name = "Robert Downey Jr.",
+                photo = R.drawable.robert_downey_jr
+            ),
+                Actor(
+                    name = "Mark Ruffalo",
+                    photo = R.drawable.mark_ruffalo
+                ),
+                Actor(
+                    name = "Chris Hemsworth",
+                    photo = R.drawable.chris_hemsworth
+                )
+            )
+        )
     )
 }
