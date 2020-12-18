@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 class MainActivity : AppCompatActivity(), ClickListener {
 
     private val movieListFragment = FragmentMovieList.newInstance()
-    private val movieDetailFragment = FragmentMovieDetails.newInstance()
+//    private val movieDetailFragment = FragmentMovieDetails.newInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity(), ClickListener {
         }
     }
 
-    override fun changeFragment(showedFragment: Fragment) {
+    override fun changeFragment(showedFragment: Fragment, movie: Movie?) {
         val nextFragment = when(showedFragment) {
             is FragmentMovieDetails -> movieListFragment
-            is FragmentMovieList -> movieDetailFragment
+            is FragmentMovieList -> FragmentMovieDetails.newInstance(movie)
             else -> null
         }
         supportFragmentManager.beginTransaction().apply {

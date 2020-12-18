@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class FragmentMovieList : Fragment() {
 
     private var listener: ClickListener? = null
-    private var movie: View? = null
+    private var recycler: RecyclerView? = null
 
     companion object {
         fun newInstance() = FragmentMovieList()
@@ -28,14 +30,32 @@ class FragmentMovieList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movie = view.findViewById(R.id.movie)
+        recycler = view.findViewById(R.id.rv_movies)
+        recycler?.adapter = MovieListAdapter(movieClickListener)
+        recycler?.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        listener = activity as ClickListener
     }
 
     override fun onStart() {
         super.onStart()
-        listener = activity as ClickListener
-        movie?.setOnClickListener {
-            listener?.changeFragment(this)
+        updateData()
+    }
+
+    private fun updateData() {
+        (recycler?.adapter as? MovieListAdapter)?.apply {
+            bindMovies(MoviesDataSource().getMovies())
         }
+    }
+
+    private fun doOnClick(movie: Movie) {
+        listener?.changeFragment(this, movie)
+    }
+
+    private val movieClickListener = object : OnMovieClickListener {
+        override fun onClick(movie: Movie) {
+            doOnClick(movie)
+        }
+
     }
 }

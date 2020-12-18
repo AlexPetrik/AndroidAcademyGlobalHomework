@@ -21,6 +21,6 @@
     <string name="ratio_13plus" translatable="false">13+</string>
     <string name="like" translatable="false">like</string>
     <string name="min">137 min</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_description">"No description"</string>
+    <string name="actor" translatable="false">actor</string>
 </resources>
