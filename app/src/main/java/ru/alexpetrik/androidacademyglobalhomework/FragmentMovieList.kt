@@ -7,11 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.*
+import ru.alexpetrik.androidacademyglobalhomework.data.Movie
+import ru.alexpetrik.androidacademyglobalhomework.data.loadMovies
 
 class FragmentMovieList : Fragment() {
 
     private var listener: ClickListener? = null
     private var recycler: RecyclerView? = null
+
+    private var scope = CoroutineScope(Dispatchers.Default)
 
     companion object {
         fun newInstance() = FragmentMovieList()
@@ -39,12 +44,16 @@ class FragmentMovieList : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        updateData()
+        scope.launch {
+            updateData()
+        }
     }
 
-    private fun updateData() {
+    private suspend fun updateData() {
         (recycler?.adapter as? MovieListAdapter)?.apply {
-            bindMovies(MoviesDataSource().getMovies())
+            withContext(Dispatchers.Main) {
+                bindMovies(loadMovies(requireContext()))
+            }
         }
     }
 
