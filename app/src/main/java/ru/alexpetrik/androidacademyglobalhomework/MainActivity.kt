@@ -3,6 +3,7 @@ package ru.alexpetrik.androidacademyglobalhomework
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import ru.alexpetrik.androidacademyglobalhomework.data.Movie
 
 class MainActivity : AppCompatActivity(), ClickListener {
 
