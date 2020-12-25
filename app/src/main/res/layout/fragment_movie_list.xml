@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:text="@string/movies_list"
         android:textColor="@color/white"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:drawableStartCompat="@drawable/ic_combined_shape"
