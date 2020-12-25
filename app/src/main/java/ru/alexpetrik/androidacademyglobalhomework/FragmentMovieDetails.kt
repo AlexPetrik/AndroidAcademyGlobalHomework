@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import ru.alexpetrik.androidacademyglobalhomework.data.Movie
 
 class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
     private var listener: ClickListener? = null
@@ -48,13 +49,17 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
 
     private fun fillContent(view: View, movie: Movie?) {
         if (movie != null) {
-            view.findViewById<TextView>(R.id.movie_detail_movie_name).text = movie.movieName
-            view.findViewById<TextView>(R.id.movie_detail_movie_tag).text = movie.tag
-            view.findViewById<ImageView>(R.id.movie_detail_mask).setImageResource(movie.image)
-            view.findViewById<RatingBar>(R.id.movie_detail_ratingBar).numStars = movie.rating
-            view.findViewById<TextView>(R.id.movie_detail_reviews).text = "${movie.reviews} reviews"
-            view.findViewById<TextView>(R.id.movie_detail_ratio).text = "${movie.ratio}+"
-            view.findViewById<TextView>(R.id.movie_detail_storyline_description).text = getText(movie.storyLine)
+            view.findViewById<TextView>(R.id.movie_detail_movie_name).text = movie.title
+            view.findViewById<TextView>(R.id.movie_detail_movie_tag).text = getTagFromGenres(movie.genres)
+            view.findViewById<RatingBar>(R.id.movie_detail_ratingBar).rating = movie.ratings / 2
+            view.findViewById<TextView>(R.id.movie_detail_reviews).text = "${movie.numberOfRatings} reviews"
+            view.findViewById<TextView>(R.id.movie_detail_ratio).text = "${movie.minimumAge}+"
+            view.findViewById<TextView>(R.id.movie_detail_storyline_description).text = movie.overview
+
+            Glide.with(view.context)
+                .load(movie.poster)
+                .centerCrop()
+                .into(view.findViewById(R.id.movie_detail_mask))
 
             (recycler?.adapter as? ActorListAdapter)?.apply {
                 bindMovies(movie.actors)

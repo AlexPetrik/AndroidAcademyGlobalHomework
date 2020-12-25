@@ -7,6 +7,9 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import ru.alexpetrik.androidacademyglobalhomework.data.Genre
+import ru.alexpetrik.androidacademyglobalhomework.data.Movie
 
 class MovieListAdapter(private val clickListener: OnMovieClickListener): RecyclerView.Adapter<MovieListViewHolder>() {
 
@@ -42,13 +45,15 @@ class MovieListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     private val movieReviewTextView: TextView = itemView.findViewById(R.id.activity_main_review)
 
     fun onBind(movie: Movie) {
-        movieNameTextView.text = movie.movieName
-        movieImgImageView.setImageResource(movie.image)
-        movieTagTextView.text = movie.tag
-        movieDurationTextView.text = "${movie.duration} min"
-        movieRatioTextView.text = "${movie.ratio}+"
-        movieRatingRatingBar.numStars = movie.rating
-        movieReviewTextView.text = "${movie.reviews} reviews"
+        Glide.with(itemView.context)
+            .load(movie.poster)
+            .into(movieImgImageView)
+        movieNameTextView.text = movie.title
+        movieTagTextView.text = getTagFromGenres(movie.genres)
+        movieDurationTextView.text = "${movie.runtime} min"
+        movieRatioTextView.text = "${movie.minimumAge}+"
+        movieRatingRatingBar.rating = movie.ratings / 2
+        movieReviewTextView.text = "${movie.numberOfRatings} reviews"
     }
 
 }

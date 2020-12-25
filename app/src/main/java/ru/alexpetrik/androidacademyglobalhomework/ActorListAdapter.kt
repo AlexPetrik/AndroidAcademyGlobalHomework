@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import ru.alexpetrik.androidacademyglobalhomework.data.Actor
 
 class ActorListAdapter(): RecyclerView.Adapter<ActorListViewHolder>() {
 
@@ -35,7 +37,9 @@ class ActorListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun onBind(actor: Actor) {
         actorNameTextView.text = actor.name
-        actorImgImageView.setImageResource(actor.photo)
+        Glide.with(itemView.context)
+            .load(actor.picture)
+            .into(actorImgImageView)
     }
 
 }
