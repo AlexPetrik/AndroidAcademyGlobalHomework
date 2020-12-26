@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
@@ -16,7 +17,7 @@ class FragmentMovieList : Fragment() {
     private var listener: ClickListener? = null
     private var recycler: RecyclerView? = null
 
-    private var scope = CoroutineScope(Dispatchers.Default)
+    private lateinit var viewModel: MovieListViewModel
 
     companion object {
         fun newInstance() = FragmentMovieList()
@@ -35,6 +36,8 @@ class FragmentMovieList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = MovieListViewModel(requireContext())
+
         recycler = view.findViewById(R.id.rv_movies)
         recycler?.adapter = MovieListAdapter(movieClickListener)
         recycler?.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -44,16 +47,20 @@ class FragmentMovieList : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        scope.launch {
-            updateData()
-        }
+        viewModel.loadMovieList()
+        viewModel.movieList.observe(this.viewLifecycleOwner, this::updateAdapter)
     }
 
-    private suspend fun updateData() {
+    override fun onDestroy() {
+        recycler?.adapter = null
+        recycler = null
+
+        super.onDestroy()
+    }
+
+    private fun updateAdapter(movies: List<Movie>) {
         (recycler?.adapter as? MovieListAdapter)?.apply {
-            withContext(Dispatchers.Main) {
-                bindMovies(loadMovies(requireContext()))
-            }
+            bindMovies(movies)
         }
     }
 
