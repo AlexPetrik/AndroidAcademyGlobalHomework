@@ -36,13 +36,15 @@ class FragmentMovieList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = MovieListViewModel(requireContext())
+        context?.let {
+            viewModel = MovieListViewModel(it)
 
-        recycler = view.findViewById(R.id.rv_movies)
-        recycler?.adapter = MovieListAdapter(movieClickListener)
-        recycler?.layoutManager = GridLayoutManager(requireContext(), 2)
+            recycler = view.findViewById(R.id.rv_movies)
+            recycler?.adapter = MovieListAdapter(movieClickListener)
+            recycler?.layoutManager = GridLayoutManager(it, 2)
 
-        listener = activity as ClickListener
+            listener = activity as ClickListener
+        }
     }
 
     override fun onStart() {

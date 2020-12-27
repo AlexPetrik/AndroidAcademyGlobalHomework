@@ -49,7 +49,7 @@ class MovieListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             .load(movie.poster)
             .into(movieImgImageView)
         movieNameTextView.text = movie.title
-        movieTagTextView.text = getTagFromGenres(movie.genres)
+        movieTagTextView.text = movie.genres?.let { getTagFromGenres(it) }
         movieDurationTextView.text = "${movie.runtime} min"
         movieRatioTextView.text = "${movie.minimumAge}+"
         movieRatingRatingBar.rating = movie.ratings / 2
