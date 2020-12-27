@@ -27,8 +27,8 @@ class MovieListViewModel(private val context: Context): ViewModel() {
     }
 
     private suspend fun updateData() {
-//        withContext(Dispatchers.Main) {
+        withContext(Dispatchers.Main) {
             _mutableMovieList.setValue(loadMovies(context))
-//        }
+        }
     }
 }
