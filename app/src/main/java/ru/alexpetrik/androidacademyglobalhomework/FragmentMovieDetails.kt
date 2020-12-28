@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,11 +18,15 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
     private var recycler: RecyclerView? = null
 
     companion object {
+        const val KEY_MOVIE_EX = "KEY_MOVIE_EX"
         fun newInstance(movie: Movie?) = FragmentMovieDetails(movie)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (savedInstanceState != null) {
+            movie = savedInstanceState.getParcelable(KEY_MOVIE_EX)
+        }
     }
 
     override fun onCreateView(
@@ -47,10 +50,19 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
         fillContent(view, movie)
    }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(KEY_MOVIE_EX, movie)
+    }
+
     private fun fillContent(view: View, movie: Movie?) {
         if (movie != null) {
             view.findViewById<TextView>(R.id.movie_detail_movie_name).text = movie.title
-            view.findViewById<TextView>(R.id.movie_detail_movie_tag).text = getTagFromGenres(movie.genres)
+            view.findViewById<TextView>(R.id.movie_detail_movie_tag).text = movie.genres?.let {
+                getTagFromGenres(
+                    it
+                )
+            }
             view.findViewById<RatingBar>(R.id.movie_detail_ratingBar).rating = movie.ratings / 2
             view.findViewById<TextView>(R.id.movie_detail_reviews).text = "${movie.numberOfRatings} reviews"
             view.findViewById<TextView>(R.id.movie_detail_ratio).text = "${movie.minimumAge}+"
@@ -62,7 +74,7 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
                 .into(view.findViewById(R.id.movie_detail_mask))
 
             (recycler?.adapter as? ActorListAdapter)?.apply {
-                bindMovies(movie.actors)
+                movie.actors?.let { bindMovies(it) }
             }
 
         }
