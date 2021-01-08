@@ -74,11 +74,6 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
             val viewModel = MovieDetailsViewModelFromInternet()
             viewModel.loadActorsList(movieId = movie.id)
             viewModel.actorsList.observe(this.viewLifecycleOwner, this::updateActorsList)
-
-//            (recycler?.adapter as? ActorListAdapter)?.apply {
-//                movie.actors?.let { bindMovies(it) }
-//            }
-
         }
     }
 
