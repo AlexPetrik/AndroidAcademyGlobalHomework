@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.alexpetrik.androidacademyglobalhomework.data.Actor
 
-class ActorListAdapter(): RecyclerView.Adapter<ActorListViewHolder>() {
+class ActorListAdapter : RecyclerView.Adapter<ActorListViewHolder>() {
 
     private var actors: List<Actor> = listOf()
 
@@ -24,7 +24,7 @@ class ActorListAdapter(): RecyclerView.Adapter<ActorListViewHolder>() {
 
     override fun getItemCount() = actors.size
 
-    fun bindMovies(newActors: List<Actor>) {
+    fun bindActors(newActors: List<Actor>) {
         actors = newActors
         notifyDataSetChanged()
     }
@@ -38,7 +38,7 @@ class ActorListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun onBind(actor: Actor) {
         actorNameTextView.text = actor.name
         Glide.with(itemView.context)
-            .load(actor.picture)
+            .load(baseURlPoster + actor.picture)
             .into(actorImgImageView)
     }
 

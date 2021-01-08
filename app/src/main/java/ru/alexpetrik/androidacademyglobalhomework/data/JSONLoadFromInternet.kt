@@ -9,33 +9,30 @@ val coroutineScope = CoroutineScope(Job() + Dispatchers.IO)
 
 @ExperimentalSerializationApi
 suspend fun loadGenres() {
-//    val genresCall = RetrofitModule.movieAPI.loadGenres(apiKey)
-//    genresCall.enqueue(object : Callback<GenresResponse> {
-//        override fun onResponse(call: Call<GenresResponse>, response: Response<GenresResponse>) {
-//            globalGenres = response.body()?.genres?.toList() ?: emptyList()
-//        }
-//        override fun onFailure(call: Call<GenresResponse>, t: Throwable) {
-//            Log.e("LoadGenres", "Error", t)
-//        }
-//    })
-
     coroutineScope.launch {
         val genresCall = RetrofitModule.movieAPI
             .loadGenresAsync(apiKey)
             .await()
         globalGenres = genresCall.genres
     }
-
 }
 
 @ExperimentalSerializationApi
 suspend fun loadMovies() : List<Movie> = withContext(Dispatchers.IO) {
+    val moviesCall = RetrofitModule.movieAPI
+        .loadPopularMoviesAsync(apiKey)
+        .await()
 
-        val moviesCall = RetrofitModule.movieAPI
-            .loadPopularMoviesAsync(apiKey)
-            .await()
+    parseMoviesResponse(moviesCall.results)
+}
 
-        parseMoviesResponse(moviesCall.results)
+@ExperimentalSerializationApi
+suspend fun loadActors(movieId: Int) : List<Actor> = withContext(Dispatchers.IO) {
+    val actorsCall = RetrofitModule.movieAPI
+        .loadActorsAsync(movieId, apiKey)
+        .await()
+
+    actorsCall.cast.filter { it.role == "Acting" }.sortedBy { it.order }.subList(0, 10)
 }
 
 private fun parseMoviesResponse(_moviesList: List<MovieFromInternet>?): List<Movie> {
@@ -62,3 +59,4 @@ private fun parseMoviesResponse(_moviesList: List<MovieFromInternet>?): List<Mov
     }
     return movieList
 }
+
