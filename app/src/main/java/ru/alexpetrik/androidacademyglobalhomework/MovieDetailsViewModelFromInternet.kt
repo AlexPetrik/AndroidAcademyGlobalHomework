@@ -7,9 +7,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import ru.alexpetrik.androidacademyglobalhomework.data.Actor
-import ru.alexpetrik.androidacademyglobalhomework.data.Movie
 import ru.alexpetrik.androidacademyglobalhomework.data.loadActors
-import ru.alexpetrik.androidacademyglobalhomework.data.loadMovies
 
 @ExperimentalSerializationApi
 class MovieDetailsViewModelFromInternet: ViewModel() {
