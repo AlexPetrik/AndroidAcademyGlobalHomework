@@ -9,22 +9,20 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
+import kotlinx.serialization.ExperimentalSerializationApi
 import ru.alexpetrik.androidacademyglobalhomework.data.Movie
 import ru.alexpetrik.androidacademyglobalhomework.data.loadMovies
 
+@ExperimentalSerializationApi
 class FragmentMovieList : Fragment() {
 
     private var listener: ClickListener? = null
     private var recycler: RecyclerView? = null
 
-    private lateinit var viewModel: MovieListViewModel
+    private lateinit var viewModelFromInternet: MovieListViewModelFromInternet
 
     companion object {
         fun newInstance() = FragmentMovieList()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -37,7 +35,7 @@ class FragmentMovieList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let {
-            viewModel = MovieListViewModel(it)
+            viewModelFromInternet = MovieListViewModelFromInternet()
 
             recycler = view.findViewById(R.id.rv_movies)
             recycler?.adapter = MovieListAdapter(movieClickListener)
@@ -49,8 +47,8 @@ class FragmentMovieList : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.loadMovieList()
-        viewModel.movieList.observe(this.viewLifecycleOwner, this::updateAdapter)
+        viewModelFromInternet.loadMovieList()
+        viewModelFromInternet.movieList.observe(this.viewLifecycleOwner, this::updateAdapter)
     }
 
     override fun onDestroy() {

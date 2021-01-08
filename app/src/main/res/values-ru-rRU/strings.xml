@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">"Домашняя работа Андроид Академии "</string>
-    <string name="android_academy_homework">"Домашняя работа Андроид Академии "</string>
-    <string name="movie_details">Подробно о фильме</string>
     <string name="avengers_end_game">Мстители:\nФинал</string>
     <string name="_13plus">13+</string>
     <string name="action_adventure_fantasy">Боевик, Приключения, Фэнтези</string>
     <string name="_125_reviews">125 просмотров</string>
     <string name="storyline">Сюжет</string>
-    <string name="star">Звезда</string>
-    <string name="image">Изображение</string>
     <string name="after_the_dev">После разрушительных событий Мстители: Война бесконечности вселенная лежит в руинах. С помощью оставшихся союзников Мстители снова собираются, чтобы обратить вспять действия Таноса и восстановить равновесие во вселенной.</string>
     <string name="cast">Роли</string>
-    <string name="r_downey_jr">Роберт Дауни мл.</string>
-    <string name="chris_evans">Крис Эванс</string>
-    <string name="mark_ruffalo">Марк Руффало</string>
-    <string name="chris_hemsworth">Крис Хэмсворт</string>
     <string name="back">Назад</string>
     <string name="movies_list">Список фильмов</string>
     <string name="min">137 мин</string>
-    <string name="no_description">Без описания</string>
 </resources>

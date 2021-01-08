@@ -8,7 +8,6 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import ru.alexpetrik.androidacademyglobalhomework.data.Genre
 import ru.alexpetrik.androidacademyglobalhomework.data.Movie
 
 class MovieListAdapter(private val clickListener: OnMovieClickListener): RecyclerView.Adapter<MovieListViewHolder>() {
@@ -46,8 +45,9 @@ class MovieListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun onBind(movie: Movie) {
         Glide.with(itemView.context)
-            .load(movie.poster)
+            .load(baseURlPoster + movie.poster)
             .into(movieImgImageView)
+
         movieNameTextView.text = movie.title
         movieTagTextView.text = movie.genres?.let { getTagFromGenres(it) }
         movieDurationTextView.text = "${movie.runtime} min"

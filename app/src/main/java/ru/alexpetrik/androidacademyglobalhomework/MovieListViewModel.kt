@@ -21,8 +21,7 @@ class MovieListViewModel(private val context: Context): ViewModel() {
 
     fun loadMovieList() {
         scope.launch {
-            updateData()
-
+//            updateData()
         }
     }
 
