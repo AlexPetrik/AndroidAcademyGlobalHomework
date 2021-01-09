@@ -1,5 +1,6 @@
 package ru.alexpetrik.androidacademyglobalhomework
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ class FragmentMovieList : Fragment() {
 
     private var listener: ClickListener? = null
     private var recycler: RecyclerView? = null
+    private var currentVisiblePosition = 0
 
     private lateinit var viewModelFromInternet: MovieListViewModelFromInternet
 
@@ -25,6 +27,10 @@ class FragmentMovieList : Fragment() {
         fun newInstance() = FragmentMovieList()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,9 +57,20 @@ class FragmentMovieList : Fragment() {
         viewModelFromInternet.movieList.observe(this.viewLifecycleOwner, this::updateAdapter)
     }
 
+    override fun onPause() {
+        super.onPause()
+        currentVisiblePosition = (recycler?.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (recycler?.layoutManager as GridLayoutManager).scrollToPosition(currentVisiblePosition)
+    }
+
     override fun onDestroy() {
         recycler?.adapter = null
         recycler = null
+        currentVisiblePosition = 0
 
         super.onDestroy()
     }
