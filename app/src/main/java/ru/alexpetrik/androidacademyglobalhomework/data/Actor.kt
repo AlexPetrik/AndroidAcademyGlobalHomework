@@ -1,7 +1,5 @@
 package ru.alexpetrik.androidacademyglobalhomework.data
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -17,4 +15,4 @@ data class Actor(
     val role: String? = null,
     @SerialName("order")
     val order: Int? = null
-)
+) : java.io.Serializable

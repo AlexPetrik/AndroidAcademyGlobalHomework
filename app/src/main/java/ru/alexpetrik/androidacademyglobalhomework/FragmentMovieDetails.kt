@@ -28,7 +28,7 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
-            movie = savedInstanceState.getParcelable(KEY_MOVIE_EX)
+            movie = savedInstanceState.getSerializable(KEY_MOVIE_EX) as Movie?
         }
     }
 
@@ -53,6 +53,10 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
         fillContent(view, movie)
    }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable(KEY_MOVIE_EX, movie)
+    }
     private fun fillContent(view: View, movie: Movie?) {
         if (movie != null) {
             view.findViewById<TextView>(R.id.movie_detail_movie_name).text = movie.title
