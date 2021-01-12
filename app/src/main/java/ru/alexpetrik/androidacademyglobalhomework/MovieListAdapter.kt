@@ -45,7 +45,7 @@ class MovieListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun onBind(movie: Movie) {
         Glide.with(itemView.context)
-            .load(baseURlPoster + movie.poster)
+            .load(movie.poster)
             .into(movieImgImageView)
 
         movieNameTextView.text = movie.title

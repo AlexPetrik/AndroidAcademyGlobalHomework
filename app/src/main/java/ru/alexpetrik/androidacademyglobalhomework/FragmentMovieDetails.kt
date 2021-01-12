@@ -10,11 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.serialization.ExperimentalSerializationApi
 import ru.alexpetrik.androidacademyglobalhomework.data.Actor
 import ru.alexpetrik.androidacademyglobalhomework.data.Movie
 
-@ExperimentalSerializationApi
 class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
     private var listener: ClickListener? = null
     private var backTextView: TextView? = null
@@ -71,7 +69,7 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
             view.findViewById<TextView>(R.id.movie_detail_storyline_description).text = movie.overview
 
             Glide.with(view.context)
-                .load(baseURlBackdrop + movie.poster)
+                .load(movie.poster)
                 .centerCrop()
                 .into(view.findViewById(R.id.movie_detail_mask))
 

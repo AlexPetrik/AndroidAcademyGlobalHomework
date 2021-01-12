@@ -8,7 +8,6 @@ import ru.alexpetrik.androidacademyglobalhomework.data.Movie
 class MainActivity : AppCompatActivity(), ClickListener {
 
     private val movieListFragment = FragmentMovieList.newInstance()
-//    private val movieDetailFragment = FragmentMovieDetails.newInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

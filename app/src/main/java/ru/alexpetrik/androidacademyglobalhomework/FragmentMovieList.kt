@@ -1,20 +1,14 @@
 package ru.alexpetrik.androidacademyglobalhomework
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.*
-import kotlinx.serialization.ExperimentalSerializationApi
 import ru.alexpetrik.androidacademyglobalhomework.data.Movie
-import ru.alexpetrik.androidacademyglobalhomework.data.loadMovies
 
-@ExperimentalSerializationApi
 class FragmentMovieList : Fragment() {
 
     private var listener: ClickListener? = null
@@ -64,7 +58,7 @@ class FragmentMovieList : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (recycler?.layoutManager as GridLayoutManager).scrollToPosition(currentVisiblePosition)
+        (recycler?.layoutManager as GridLayoutManager).scrollToPositionWithOffset(currentVisiblePosition, 0)
     }
 
     override fun onDestroy() {
