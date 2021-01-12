@@ -37,7 +37,7 @@ class ActorListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun onBind(actor: Actor) {
         actorNameTextView.text = actor.name
         Glide.with(itemView.context)
-            .load(actor.profile_path)
+            .load(actor.profilePath)
             .into(actorImgImageView)
     }
 

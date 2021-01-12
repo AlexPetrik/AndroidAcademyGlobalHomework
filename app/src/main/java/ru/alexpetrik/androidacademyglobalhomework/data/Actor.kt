@@ -6,7 +6,5 @@ import kotlinx.serialization.Serializable
 data class Actor(
     val id: Int,
     val name: String?,
-    var profile_path: String?,
-    val known_for_department: String? = null,
-    val order: Int? = null
+    var profilePath: String?
 ) : java.io.Serializable

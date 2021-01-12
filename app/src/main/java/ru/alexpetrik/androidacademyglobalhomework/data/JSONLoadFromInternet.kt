@@ -1,7 +1,6 @@
 package ru.alexpetrik.androidacademyglobalhomework.data
 
 import kotlinx.coroutines.*
-import kotlinx.serialization.ExperimentalSerializationApi
 import ru.alexpetrik.androidacademyglobalhomework.apiKey
 import ru.alexpetrik.androidacademyglobalhomework.baseURlPoster
 import ru.alexpetrik.androidacademyglobalhomework.globalGenres
@@ -30,11 +29,24 @@ suspend fun loadActors(movieId: Int) : List<Actor> = withContext(Dispatchers.IO)
         .loadActorsAsync(movieId, apiKey)
         .await()
 
-    val respondedActorsList = actorsCall.cast
-    respondedActorsList.forEach {
-        it.profile_path = baseURlPoster + it.profile_path
-    }
-    respondedActorsList.filter { it.known_for_department == "Acting" }.sortedBy { it.order }.subList(0, 10)
+    parseActorsResponse(actorsCall.cast)
+}
+
+private fun parseActorsResponse(_actorsList: List<ActorFromInternet>?): List<Actor> {
+    val actorsList = mutableListOf<Actor>()
+    _actorsList?.filter { it.role == "Acting" }
+        ?.sortedBy { it.order }
+        ?.subList(0, 10)
+        ?.forEach {
+            actorsList.add(
+                Actor(
+                    id = it.id,
+                    name = it.name,
+                    profilePath = baseURlPoster + it.profilePath
+                )
+            )
+        }
+    return actorsList
 }
 
 private fun parseMoviesResponse(_moviesList: List<MovieFromInternet>?): List<Movie> {
