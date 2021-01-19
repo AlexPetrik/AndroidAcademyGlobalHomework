@@ -3,7 +3,7 @@ package ru.alexpetrik.androidacademyglobalhomework.data
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MovieFromInternet(
+data class MovieResponse(
     val id: Int,
     val title: String?,
     val overview: String?,

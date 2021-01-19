@@ -2,6 +2,7 @@ package ru.alexpetrik.androidacademyglobalhomework.data
 
 import kotlinx.coroutines.*
 import ru.alexpetrik.androidacademyglobalhomework.apiKey
+import ru.alexpetrik.androidacademyglobalhomework.baseURlBackdrop
 import ru.alexpetrik.androidacademyglobalhomework.baseURlPoster
 import ru.alexpetrik.androidacademyglobalhomework.globalGenres
 
@@ -32,7 +33,7 @@ suspend fun loadActors(movieId: Int) : List<Actor> = withContext(Dispatchers.IO)
     parseActorsResponse(actorsCall.cast)
 }
 
-private fun parseActorsResponse(_actorsList: List<ActorFromInternet>?): List<Actor> {
+private fun parseActorsResponse(_actorsList: List<ActorResponse>?): List<Actor> {
     val actorsList = mutableListOf<Actor>()
     _actorsList?.filter { it.role == "Acting" }
         ?.sortedBy { it.order }
@@ -49,7 +50,7 @@ private fun parseActorsResponse(_actorsList: List<ActorFromInternet>?): List<Act
     return actorsList
 }
 
-private fun parseMoviesResponse(_moviesList: List<MovieFromInternet>?): List<Movie> {
+private fun parseMoviesResponse(_moviesList: List<MovieResponse>?): List<Movie> {
     val genresMap = globalGenres.associateBy { it.id }
     val movieList = mutableListOf<Movie>()
     _moviesList?.forEach { _element ->
@@ -59,7 +60,7 @@ private fun parseMoviesResponse(_moviesList: List<MovieFromInternet>?): List<Mov
                 title = _element.title,
                 overview = _element.overview,
                 poster = baseURlPoster + _element.poster_path,
-                backdrop = _element.backdrop_path,
+                backdrop = baseURlBackdrop + _element.backdrop_path,
                 ratings = _element.vote_average / 2,
                 numberOfRatings = _element.vote_count,
                 minimumAge = if (_element.adult) 16 else 13,

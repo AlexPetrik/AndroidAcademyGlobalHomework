@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ActorsResponse(
     @SerialName("cast")
-    val cast: List<ActorFromInternet>
+    val cast: List<ActorResponse>
 )

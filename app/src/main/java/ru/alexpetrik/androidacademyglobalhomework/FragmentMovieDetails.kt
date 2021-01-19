@@ -69,7 +69,7 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
             view.findViewById<TextView>(R.id.movie_detail_storyline_description).text = movie.overview
 
             Glide.with(view.context)
-                .load(movie.poster)
+                .load(movie.backdrop)
                 .centerCrop()
                 .into(view.findViewById(R.id.movie_detail_mask))
 

@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MoviesResponse(
     @SerialName("results")
-    val results: List<MovieFromInternet>
+    val results: List<MovieResponse>
 )
