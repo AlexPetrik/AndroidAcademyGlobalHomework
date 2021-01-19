@@ -2,9 +2,9 @@ package ru.alexpetrik.androidacademyglobalhomework.db
 
 object MovieDbContract {
 
-    const val ACTOR_TABLE_NAME = "Actors.db"
-    const val GENRE_TABLE_NAME = "Genres.db"
-    const val MOVIE_TABLE_NAME = "Movies.db"
+    const val ACTOR_TABLE_NAME = "actors.db"
+    const val GENRE_TABLE_NAME = "genres.db"
+    const val MOVIE_TABLE_NAME = "movies"
     const val MOVIE_GENRE_TABLE_NAME = "Movies_Genres.db"
     const val MOVIE_ACTOR_TABLE_NAME = "Movies_Actors.db"
 
