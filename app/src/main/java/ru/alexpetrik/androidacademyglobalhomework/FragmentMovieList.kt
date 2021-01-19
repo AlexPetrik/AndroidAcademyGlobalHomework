@@ -1,23 +1,21 @@
 package ru.alexpetrik.androidacademyglobalhomework
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.*
 import ru.alexpetrik.androidacademyglobalhomework.data.Movie
-import ru.alexpetrik.androidacademyglobalhomework.data.loadMovies
 
 class FragmentMovieList : Fragment() {
 
     private var listener: ClickListener? = null
     private var recycler: RecyclerView? = null
+    private var currentVisiblePosition = 0
 
-    private lateinit var viewModel: MovieListViewModel
+    private lateinit var viewModelFromInternet: MovieListViewModelFromInternet
 
     companion object {
         fun newInstance() = FragmentMovieList()
@@ -25,8 +23,8 @@ class FragmentMovieList : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        retainInstance = true
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +35,7 @@ class FragmentMovieList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let {
-            viewModel = MovieListViewModel(it)
+            viewModelFromInternet = MovieListViewModelFromInternet()
 
             recycler = view.findViewById(R.id.rv_movies)
             recycler?.adapter = MovieListAdapter(movieClickListener)
@@ -49,13 +47,24 @@ class FragmentMovieList : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.loadMovieList()
-        viewModel.movieList.observe(this.viewLifecycleOwner, this::updateAdapter)
+        viewModelFromInternet.loadMovieList()
+        viewModelFromInternet.movieList.observe(this.viewLifecycleOwner, this::updateAdapter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        currentVisiblePosition = (recycler?.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (recycler?.layoutManager as GridLayoutManager).scrollToPositionWithOffset(currentVisiblePosition, 0)
     }
 
     override fun onDestroy() {
         recycler?.adapter = null
         recycler = null
+        currentVisiblePosition = 0
 
         super.onDestroy()
     }

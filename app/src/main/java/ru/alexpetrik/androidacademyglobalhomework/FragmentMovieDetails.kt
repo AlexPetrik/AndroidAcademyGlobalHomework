@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import ru.alexpetrik.androidacademyglobalhomework.data.Actor
 import ru.alexpetrik.androidacademyglobalhomework.data.Movie
 
 class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
@@ -25,7 +26,7 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
-            movie = savedInstanceState.getParcelable(KEY_MOVIE_EX)
+            movie = savedInstanceState.getSerializable(KEY_MOVIE_EX) as Movie?
         }
     }
 
@@ -52,9 +53,8 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(KEY_MOVIE_EX, movie)
+        outState.putSerializable(KEY_MOVIE_EX, movie)
     }
-
     private fun fillContent(view: View, movie: Movie?) {
         if (movie != null) {
             view.findViewById<TextView>(R.id.movie_detail_movie_name).text = movie.title
@@ -69,14 +69,13 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
             view.findViewById<TextView>(R.id.movie_detail_storyline_description).text = movie.overview
 
             Glide.with(view.context)
-                .load(movie.poster)
+                .load(movie.backdrop)
                 .centerCrop()
                 .into(view.findViewById(R.id.movie_detail_mask))
 
-            (recycler?.adapter as? ActorListAdapter)?.apply {
-                movie.actors?.let { bindMovies(it) }
-            }
-
+            val viewModel = MovieDetailsViewModelFromInternet()
+            viewModel.loadActorsList(movieId = movie.id)
+            viewModel.actorsList.observe(this.viewLifecycleOwner, this::updateActorsList)
         }
     }
 
@@ -85,6 +84,12 @@ class FragmentMovieDetails(private var movie: Movie? = null) : Fragment() {
         listener = activity as ClickListener
         backTextView?.setOnClickListener {
             listener?.changeFragment(this, null)
+        }
+    }
+
+    private fun updateActorsList(actors: List<Actor>) {
+        (recycler?.adapter as? ActorListAdapter)?.apply {
+            bindActors(actors)
         }
     }
 }
