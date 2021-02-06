@@ -6,16 +6,8 @@ import ru.alexpetrik.androidacademyglobalhomework.baseURlBackdrop
 import ru.alexpetrik.androidacademyglobalhomework.baseURlPoster
 import ru.alexpetrik.androidacademyglobalhomework.globalGenres
 
-val coroutineScope = CoroutineScope(Job() + Dispatchers.IO)
-
-suspend fun loadGenres() {
-    coroutineScope.launch {
-        val genresCall = RetrofitModule.movieAPI
-            .loadGenresAsync(apiKey)
-            .await()
-        globalGenres = genresCall.genres
-    }
-}
+suspend fun loadGenres() : List<Genre> = RetrofitModule.movieAPI
+        .loadGenresAsync(apiKey).await().genres
 
 suspend fun loadMovies() : List<Movie> = withContext(Dispatchers.IO) {
     val moviesCall = RetrofitModule.movieAPI
@@ -25,12 +17,12 @@ suspend fun loadMovies() : List<Movie> = withContext(Dispatchers.IO) {
     parseMoviesResponse(moviesCall.results)
 }
 
-suspend fun loadActors(movieId: Int) : List<Actor> = withContext(Dispatchers.IO) {
+suspend fun loadActors(movieId: Int) : List<Actor> {
     val actorsCall = RetrofitModule.movieAPI
         .loadActorsAsync(movieId, apiKey)
         .await()
 
-    parseActorsResponse(actorsCall.cast)
+    return parseActorsResponse(actorsCall.cast)
 }
 
 private fun parseActorsResponse(_actorsList: List<ActorResponse>?): List<Actor> {

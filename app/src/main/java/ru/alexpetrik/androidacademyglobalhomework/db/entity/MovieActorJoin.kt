@@ -4,13 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import ru.alexpetrik.androidacademyglobalhomework.db.MovieDbContract
+import ru.alexpetrik.androidacademyglobalhomework.db.DbContract
 
-import ru.alexpetrik.androidacademyglobalhomework.db.MovieDbContract.MovieActorJoinContract.COLUMN_NAME_MOVIE_ID as movieActorJoinContractMovieId
-import ru.alexpetrik.androidacademyglobalhomework.db.MovieDbContract.MovieActorJoinContract.COLUMN_NAME_ACTOR_ID as movieActorJoinContractActorId
+import ru.alexpetrik.androidacademyglobalhomework.db.DbContract.MovieActorJoinContract.COLUMN_NAME_MOVIE_ID as movieActorJoinContractMovieId
+import ru.alexpetrik.androidacademyglobalhomework.db.DbContract.MovieActorJoinContract.COLUMN_NAME_ACTOR_ID as movieActorJoinContractActorId
 
 @Entity(
-    tableName = MovieDbContract.MOVIE_ACTOR_TABLE_NAME,
+    tableName = DbContract.MOVIE_ACTOR_TABLE_NAME,
     primaryKeys = [movieActorJoinContractMovieId, movieActorJoinContractActorId],
     indices = [
         Index(value = [movieActorJoinContractMovieId]),
@@ -18,18 +18,20 @@ import ru.alexpetrik.androidacademyglobalhomework.db.MovieDbContract.MovieActorJ
     ],
     foreignKeys = [
         ForeignKey(entity = MovieDb::class,
-            parentColumns = [MovieDbContract.MovieContract.COLUMN_NAME_ID],
+            parentColumns = [DbContract.MovieContract.COLUMN_NAME_ID],
             childColumns = [movieActorJoinContractMovieId],
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(entity = ActorDb::class,
-            parentColumns = [MovieDbContract.ActorContract.COLUMN_NAME_ID],
+            parentColumns = [DbContract.ActorContract.COLUMN_NAME_ID],
             childColumns = [movieActorJoinContractActorId],
             onDelete = ForeignKey.CASCADE
         )
     ],
 )
 data class MovieActorJoin(
-    @ColumnInfo(name = movieActorJoinContractMovieId) val movieId: String,
-    @ColumnInfo(name = movieActorJoinContractActorId) val actorId: String
+    @ColumnInfo(name = movieActorJoinContractMovieId) val movieId: Int,
+    @ColumnInfo(name = movieActorJoinContractActorId) val actorId: Int,
+    @ColumnInfo(name = DbContract.ActorContract.COLUMN_NAME_NAME) val name: String?,
+    @ColumnInfo(name = DbContract.ActorContract.COLUMN_NAME_PROFILE) var profilePath: String?
 )
