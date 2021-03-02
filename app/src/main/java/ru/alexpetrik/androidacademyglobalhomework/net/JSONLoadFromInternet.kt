@@ -5,13 +5,17 @@ import ru.alexpetrik.androidacademyglobalhomework.apiKey
 import ru.alexpetrik.androidacademyglobalhomework.baseURlBackdrop
 import ru.alexpetrik.androidacademyglobalhomework.baseURlPoster
 import ru.alexpetrik.androidacademyglobalhomework.globalGenres
+import ru.alexpetrik.androidacademyglobalhomework.net.ActorResponse
+import ru.alexpetrik.androidacademyglobalhomework.net.MovieResponse
+import ru.alexpetrik.androidacademyglobalhomework.net.RetrofitModule
 
 suspend fun loadGenres() : List<Genre> = RetrofitModule.movieAPI
-        .loadGenresAsync(apiKey).await().genres
+    .loadGenresAsync()
+    .await().genres
 
 suspend fun loadMovies() : List<Movie> = withContext(Dispatchers.IO) {
     val moviesCall = RetrofitModule.movieAPI
-        .loadPopularMoviesAsync(apiKey)
+        .loadPopularMoviesAsync()
         .await()
 
     parseMoviesResponse(moviesCall.results)
@@ -19,7 +23,7 @@ suspend fun loadMovies() : List<Movie> = withContext(Dispatchers.IO) {
 
 suspend fun loadActors(movieId: Int) : List<Actor> {
     val actorsCall = RetrofitModule.movieAPI
-        .loadActorsAsync(movieId, apiKey)
+        .loadActorsAsync(movieId)
         .await()
 
     return parseActorsResponse(actorsCall.cast)

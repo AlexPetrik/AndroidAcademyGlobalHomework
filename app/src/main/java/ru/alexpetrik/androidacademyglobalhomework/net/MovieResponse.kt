@@ -1,4 +1,4 @@
-package ru.alexpetrik.androidacademyglobalhomework.data
+package ru.alexpetrik.androidacademyglobalhomework.net
 
 import kotlinx.serialization.Serializable
 
