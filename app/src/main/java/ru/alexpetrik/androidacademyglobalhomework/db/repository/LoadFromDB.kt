@@ -1,5 +1,6 @@
 package ru.alexpetrik.androidacademyglobalhomework.db.repository
 
+import kotlinx.coroutines.flow.*
 import ru.alexpetrik.androidacademyglobalhomework.MovieListApp
 import ru.alexpetrik.androidacademyglobalhomework.data.Actor
 import ru.alexpetrik.androidacademyglobalhomework.data.Genre
@@ -9,18 +10,18 @@ import ru.alexpetrik.androidacademyglobalhomework.globalGenres
 
 val database = MovieListApp.database
 
-suspend fun readGenresFromDb() {
-//    coroutineScope.launch {
-        val genreDao = database.genreDao()
-        val listGenreDb = genreDao.getAll()
 
-        globalGenres = parseGenreDao(listGenreDb)
-//    }
+suspend fun readGenresFromDb() {
+    val genreDao = database.genreDao()
+    val listGenreDb = genreDao.getAll()
+
+    globalGenres = parseGenreDao(listGenreDb)
 }
 
 suspend fun readFilmsFromDb() : List<Movie> {
     readGenresFromDb()
-    return readMoviesFromDb()
+//    return readMoviesFromDb()
+    return readChangedMoviesFromDb()
 }
 
 suspend fun readMoviesFromDb() : List<Movie> {
@@ -29,10 +30,18 @@ suspend fun readMoviesFromDb() : List<Movie> {
     val listMovieDb = movieDao.getAll()
 
 
-    return parseMovieDao(listMovieDb)
+    return parseMovieDb(listMovieDb)
 }
 
-fun parseMovieDao(listMovieDb: List<MovieDb>): List<Movie> {
+suspend fun readChangedMoviesFromDb() : List<Movie> {
+
+    val movieDao = database.movieDao()
+    val listMovieDb = movieDao.getAllMoviesUntilChanged()
+
+    return parseMovieDb(listMovieDb.toList())
+}
+
+fun parseMovieDb(listMovieDb: List<MovieDb>): List<Movie> {
     val listMovie = mutableListOf<Movie>()
 
     listMovieDb.forEach {
@@ -109,7 +118,9 @@ suspend fun saveRemoteFilmsToDb(listMovies: List<Movie>) {
 //        movieDao.insert(movieDb)
     }
 
-    movieDao.insertAll(listMovieDb)
+//    movieDao.deleteAllMovies()
+//    movieDao.insertAll(listMovieDb)
+    movieDao.deleteAndInsertAllMovies(listMovieDb)
 
     val genresOfMovie = listMovies.map{it.id to it.genres}.toMap()
     saveMovieGenresJoin(genresOfMovie)

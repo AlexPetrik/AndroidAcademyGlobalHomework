@@ -68,6 +68,8 @@ private fun parseMoviesResponse(_moviesList: List<MovieResponse>?): List<Movie> 
             )
         )
     }
+
+    movieList.sortBy { it.ratings }
     return movieList
 }
 

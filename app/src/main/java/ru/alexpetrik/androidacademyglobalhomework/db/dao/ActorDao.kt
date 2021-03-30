@@ -4,6 +4,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import ru.alexpetrik.androidacademyglobalhomework.db.entity.ActorDb
 import ru.alexpetrik.androidacademyglobalhomework.db.entity.MovieActorJoin
 import ru.alexpetrik.androidacademyglobalhomework.db.DbContract.MOVIE_ACTOR_TABLE_NAME as actorTableName
@@ -15,6 +18,9 @@ interface ActorDao {
 
     @Query("SELECT * FROM $actorTableName WHERE $columnMovieId = :movieId")
     fun getActorsForMovie(movieId: Int) : List<MovieActorJoin>
+
+    suspend fun getAllActorsForMovieUntilChanged(movieId: Int) =
+        getActorsForMovie(movieId).asFlow().distinctUntilChanged()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(actorDb: MovieActorJoin)
