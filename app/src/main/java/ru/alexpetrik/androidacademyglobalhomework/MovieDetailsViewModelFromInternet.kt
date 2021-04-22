@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import ru.alexpetrik.androidacademyglobalhomework.data.Actor
 import ru.alexpetrik.androidacademyglobalhomework.data.loadActors
+import ru.alexpetrik.androidacademyglobalhomework.db.repository.readActorsFromDb
+import ru.alexpetrik.androidacademyglobalhomework.db.repository.saveMovieActors
 
 class MovieDetailsViewModelFromInternet: ViewModel() {
 
@@ -20,8 +22,23 @@ class MovieDetailsViewModelFromInternet: ViewModel() {
 
     fun loadActorsList(movieId : Int) {
         scope.launch(exceptionHandler) {
+
+            val localActors = withContext(Dispatchers.IO) {
+                readActorsFromDb(movieId)
+            }
+
+            if (localActors.isNotEmpty())
+                withContext(Dispatchers.Main) {
+                    _mutableActorsList.value = localActors
+                }
+
+            val remoteActors = withContext(Dispatchers.IO) {
+                loadActors(movieId)
+            }
+
+            saveMovieActors(mapOf(movieId to remoteActors))
             withContext(Dispatchers.Main) {
-                _mutableActorsList.value = loadActors(movieId)
+                _mutableActorsList.value = remoteActors
             }
         }
     }

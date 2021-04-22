@@ -1,14 +1,15 @@
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+package ru.alexpetrik.androidacademyglobalhomework.net
+
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import ru.alexpetrik.androidacademyglobalhomework.MovieAPIService
+import ru.alexpetrik.androidacademyglobalhomework.apiKey
 import ru.alexpetrik.androidacademyglobalhomework.baseURL
 
 @ExperimentalSerializationApi
@@ -19,6 +20,7 @@ object RetrofitModule {
     }
 
     private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(MovieApiInterceptor())
         .build()
 
     private val retrofit = Retrofit.Builder()
@@ -30,4 +32,27 @@ object RetrofitModule {
 
     val movieAPI: MovieAPIService = retrofit.create(MovieAPIService::class.java)
 
+    class MovieApiInterceptor : Interceptor {
+        override fun intercept(chain: Interceptor.Chain): Response {
+            val originRequest = chain.request()
+            val originUrl = originRequest.url
+
+            val url = originUrl.newBuilder()
+                .addQueryParameter(
+                    name = "api_key",
+                    value = apiKey
+                )
+                .addQueryParameter(
+                    name = "language",
+                    value = "en-US"
+                )
+                .build()
+
+            val request = originRequest.newBuilder()
+                .url(url = url)
+                .build()
+
+            return chain.proceed(request)
+        }
+    }
 }

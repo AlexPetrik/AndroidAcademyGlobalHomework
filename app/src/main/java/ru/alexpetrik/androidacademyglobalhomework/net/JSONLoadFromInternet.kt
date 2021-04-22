@@ -5,32 +5,28 @@ import ru.alexpetrik.androidacademyglobalhomework.apiKey
 import ru.alexpetrik.androidacademyglobalhomework.baseURlBackdrop
 import ru.alexpetrik.androidacademyglobalhomework.baseURlPoster
 import ru.alexpetrik.androidacademyglobalhomework.globalGenres
+import ru.alexpetrik.androidacademyglobalhomework.net.ActorResponse
+import ru.alexpetrik.androidacademyglobalhomework.net.MovieResponse
+import ru.alexpetrik.androidacademyglobalhomework.net.RetrofitModule
 
-val coroutineScope = CoroutineScope(Job() + Dispatchers.IO)
-
-suspend fun loadGenres() {
-    coroutineScope.launch {
-        val genresCall = RetrofitModule.movieAPI
-            .loadGenresAsync(apiKey)
-            .await()
-        globalGenres = genresCall.genres
-    }
-}
+suspend fun loadGenres() : List<Genre> = RetrofitModule.movieAPI
+    .loadGenresAsync()
+    .await().genres
 
 suspend fun loadMovies() : List<Movie> = withContext(Dispatchers.IO) {
     val moviesCall = RetrofitModule.movieAPI
-        .loadPopularMoviesAsync(apiKey)
+        .loadPopularMoviesAsync()
         .await()
 
     parseMoviesResponse(moviesCall.results)
 }
 
-suspend fun loadActors(movieId: Int) : List<Actor> = withContext(Dispatchers.IO) {
+suspend fun loadActors(movieId: Int) : List<Actor> {
     val actorsCall = RetrofitModule.movieAPI
-        .loadActorsAsync(movieId, apiKey)
+        .loadActorsAsync(movieId)
         .await()
 
-    parseActorsResponse(actorsCall.cast)
+    return parseActorsResponse(actorsCall.cast)
 }
 
 private fun parseActorsResponse(_actorsList: List<ActorResponse>?): List<Actor> {
@@ -72,6 +68,8 @@ private fun parseMoviesResponse(_moviesList: List<MovieResponse>?): List<Movie> 
             )
         )
     }
+
+    movieList.sortBy { it.ratings }
     return movieList
 }
 

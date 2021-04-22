@@ -5,9 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
-import ru.alexpetrik.androidacademyglobalhomework.data.Movie
-import ru.alexpetrik.androidacademyglobalhomework.data.loadGenres
-import ru.alexpetrik.androidacademyglobalhomework.data.loadMovies
+import ru.alexpetrik.androidacademyglobalhomework.data.*
+import ru.alexpetrik.androidacademyglobalhomework.db.repository.readFilmsFromDb
+import ru.alexpetrik.androidacademyglobalhomework.db.repository.saveRemoteFilmsToDb
+import ru.alexpetrik.androidacademyglobalhomework.db.repository.saveRemoteGenres
 
 class MovieListViewModelFromInternet : ViewModel() {
 
@@ -21,11 +22,26 @@ class MovieListViewModelFromInternet : ViewModel() {
 
     fun loadMovieList() {
         scope.launch(exceptionHandler) {
-            loadGenres()
-            withContext(Dispatchers.Main) {
-                _mutableMovieList.value = loadMovies()
+
+            val localFilms = withContext(Dispatchers.IO) {
+                readFilmsFromDb()
             }
+
+            if (localFilms.isNotEmpty()) {
+                withContext(Dispatchers.Main) { _mutableMovieList.value = localFilms }
+            }
+
+           val remoteFilmsResult = withContext(Dispatchers.IO) {
+                globalGenres = loadGenres()
+                loadMovies()
+            }
+
+            saveRemoteGenres(globalGenres)
+            saveRemoteFilmsToDb(remoteFilmsResult)
+            withContext(Dispatchers.Main) {
+                _mutableMovieList.value = remoteFilmsResult
+            }
+
         }
     }
-
 }
